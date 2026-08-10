@@ -14,8 +14,6 @@ bin/
 coverage.*
 profile.cov
 *.coverprofile
-coverage.txt
-coverage.out
 
 # Локальные переменные окружения
 *.env
