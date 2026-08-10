@@ -1,32 +1,41 @@
-# If you prefer the allow list template instead of the deny list, see community template:
-# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
-#
-# Binaries for programs and plugins
+# Бинарные файлы и исполняемые файлы
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
-
-# Test binary, built with `go test -c`
 *.test
-
-# Code coverage profiles and other test artifacts
 *.out
-coverage.*
-*.coverprofile
-profile.cov
 
-# Dependency directories (remove the comment below to include it)
+# Главный бинарник проекта (замените app на имя вашего сервиса)
+app
+bin/
+
+# Инструменты тестирования и покрытия кода
+*.coverprofile
+coverage.txt
+coverage.out
+
+# Локальные переменные окружения
+*.env
+*.env.local
+.env.*.local
+
+# Зависимости (если вы используете vendor/, обычно он игнорируется)
+# Раскомментируйте строку ниже, если НЕ хотите сохранять vendor в git
 # vendor/
 
-# Go workspace file
-go.work
-go.work.sum
+# Кэш сборки Go
+.go-build/
 
-# env file
-.env
+# Логи
+*.log
 
-# Editor/IDE
-# .idea/
-# .vscode/
+# Файлы популярных сред разработки (IDE)
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
