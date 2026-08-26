@@ -11,6 +11,7 @@ import (
 
 type ReviewHandler interface {
 	GetAll(c *echo.Context) error
+	GetAllByProductID(c *echo.Context) error
 	Update(c *echo.Context) error
 	Post(c *echo.Context) error
 	Delete(c *echo.Context) error
@@ -38,6 +39,7 @@ func setupHttp(
 func registerReviewsRoutes(httpSrv *echoserver.Server, reviewH ReviewHandler) error {
 	reviews := httpSrv.E.Group("/reviews")
 	reviews.GET("", reviewH.GetAll)
+	reviews.GET("/products/:id", reviewH.GetAllByProductID)
 	reviews.GET("/:id", reviewH.GetByID)
 	reviews.PATCH("/:id", reviewH.Update)
 	reviews.DELETE("/:id", reviewH.Delete)
