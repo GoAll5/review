@@ -9,21 +9,12 @@ import (
 	"review/internal/transport/http/httputil/helpers"
 )
 
-//type ReviewHandler interface {
-//	GetAll(c *echo.Context) error
-//	GetAllByProductID(c *echo.Context) error
-//	Update(c *echo.Context) error
-//	Post(c *echo.Context) error
-//	Delete(c *echo.Context) error
-//	GetByID(c *echo.Context) error
-//}
-
 type Svc interface {
 	GetAll(c context.Context) ([]domain.Review, error)
 	GetAllByProductID(c context.Context, id uuid.UUID) ([]domain.Review, error)
 	GetByID(c context.Context, id uuid.UUID) (*domain.Review, error)
 	Create(c context.Context, review domain.Review) (domain.Review, error)
-	Update(c context.Context, review reviewdto.UpdateReviewRequest) (domain.Review, error)
+	Patch(c context.Context, review reviewdto.UpdateReviewRequest) (domain.Review, error)
 	Delete(c context.Context, id uuid.UUID) error
 }
 
@@ -47,7 +38,7 @@ func (h *Handler) GetByID(c *echo.Context) (domain.Review, error) {
 	return domain.Review{}, helpers.InternalErr(c)
 }
 
-func (h *Handler) Create(c *echo.Context) (domain.Review, error) {
+func (h *Handler) Post(c *echo.Context) (domain.Review, error) {
 	return domain.Review{}, helpers.InternalErr(c)
 }
 
