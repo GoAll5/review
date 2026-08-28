@@ -7,23 +7,24 @@ import (
 )
 
 type ErrorResponse struct {
-	Error string `json:"error"`
+	Error   string `json:"error"`
+	Message string `json:"message"`
 }
 
 func BadRequest(c *echo.Context, msg string) error {
-	return c.JSON(http.StatusBadRequest, ErrorResponse{Error: msg})
+	return c.JSON(http.StatusBadRequest, ErrorResponse{Error: "status bad request", Message: msg})
 }
 
 func Unauthorized(c *echo.Context, msg string) error {
-	return c.JSON(http.StatusUnauthorized, ErrorResponse{Error: msg})
+	return c.JSON(http.StatusUnauthorized, ErrorResponse{Error: "Status unauthorized", Message: msg})
 }
 
 func InternalErr(c *echo.Context) error {
 	return c.JSON(http.StatusInternalServerError, ErrorResponse{Error: "internal error"})
 }
 
-func NotFound(c *echo.Context) error {
-	return c.JSON(http.StatusNotFound, ErrorResponse{Error: "not found"})
+func NotFound(c *echo.Context, msg string) error {
+	return c.JSON(http.StatusNotFound, ErrorResponse{Error: "not found", Message: msg})
 }
 
 func Ok(c *echo.Context, review domain.Review) error {

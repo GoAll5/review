@@ -2,13 +2,19 @@ package app
 
 import (
 	"context"
-	"log/slog"
-	"review/internal/config"
+	"review/internal/store/mongostore"
 )
 
 type infra struct {
+	ClientDB *mongostore.DB
 }
 
-func initInfra(ctx context.Context, cfg *config.Config, log *slog.Logger) (*infra, error) {
-	return nil, nil
+// log *slog.Logger
+func initInfra(ctx context.Context, dsn string) (*infra, error) {
+	clientDB, err := mongostore.New(ctx, dsn)
+	if err != nil {
+		return nil, err
+	}
+
+	return &infra{ClientDB: clientDB}, nil
 }
