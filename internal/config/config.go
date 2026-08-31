@@ -11,6 +11,7 @@ type Config struct {
 	Env    string       `yaml:"env" env:"ENV" env-default:"local"`
 	HTTP   HTTPConfig   `yaml:"http"`
 	Public PublicConfig `yaml:"public"`
+	Mongo  MongoConfig  `yaml:"mongo"`
 }
 
 type PublicConfig struct {
@@ -21,6 +22,10 @@ type HTTPConfig struct {
 	Port    int           `yaml:"port" env:"HTTP_PORT" env-default:"8083"`
 	Addr    string        `yaml:"addr" env:"HTTP_ADDR" env-default:"localhost"`
 	Timeout time.Duration `yaml:"timeout" env:"HTTP_TIMEOUT" env-default:"5s"`
+}
+
+type MongoConfig struct {
+	DSN string `yaml:"dsn" env:"MONGO_DB" env-required:"true"`
 }
 
 func MustLoad() *Config {
